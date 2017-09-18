@@ -1,4 +1,4 @@
-package org.arronlin.httpClient;
+package client;
 
 import model.UIMOrg;
 import model.UIMUser;
@@ -42,10 +42,10 @@ public class UIMClientTest {
     }
     @Test
     public void orgfind(){
-        String name = "name";
+        String name = "oaId";
         String value = "9643";
         PageResponse<UIMOrg> rps = client.orgfind(name,value);
-        List<model.UIMOrg> list = rps.getContent();
+        List<UIMOrg> list = rps.getContent();
         System.out.println(list);
     }
 }

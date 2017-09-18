@@ -1,4 +1,4 @@
-package org.arronlin.httpClient;
+package client;
 
 import Utils.ObjectMapperImpl;
 import Utils.OpenApiUtils;
@@ -6,11 +6,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import model.UIMOrg;
 import model.UIMUser;
 import model.vo.*;
+import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.cookie.CookiePolicy;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.HttpClient;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
@@ -25,7 +25,7 @@ public class UIMClient {
     protected  String appKey;
     protected  String appSecret;
 
-    public UIMClient(String endPoint,String appKey,String appSecret){
+    public UIMClient(String endPoint, String appKey, String appSecret){
         this.endPoint = endPoint;
         this.appKey = appKey;
         this.appSecret = appSecret;
