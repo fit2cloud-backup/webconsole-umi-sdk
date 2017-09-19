@@ -23,14 +23,14 @@ public class UIMClientTest {
     }
     @Test
     public void readUsertest(){
-        ExecuteResponse<UIMUser> rps = client.readuser("48252104");
-//        ExecuteResponse<UIMUser> rps = client.readuser("0009704");
+//        ExecuteResponse<UIMUser> rps = client.readuser("48252104");
+        ExecuteResponse<UIMUser> rps = client.readuser("2058");
         UIMUser user = rps.getReturnObject();
         System.out.println(user);
     }
     @Test
     public void readorgTest(){
-        ExecuteResponse<UIMOrg> rps = client.readorg("9643");
+        ExecuteResponse<UIMOrg> rps = client.readorg("IT0801");
         UIMOrg uimOrg = rps.getReturnObject();
         System.out.println(uimOrg);
     }
@@ -43,9 +43,17 @@ public class UIMClientTest {
     @Test
     public void orgfind(){
         String name = "oaId";
-        String value = "9643";
+        String value = "IT0801";
         PageResponse<UIMOrg> rps = client.orgfind(name,value);
         List<UIMOrg> list = rps.getContent();
         System.out.println(list);
+    }
+    @Test
+    public void userfindTest(){
+        String email = "email";
+        String value ="Jay.Jiang@infinitus-int.com";
+        PageResponse<UIMUser> rps = client.userfind(email,value);
+        List<UIMUser> uimUsers = rps.getContent();
+        System.out.println(uimUsers);
     }
 }

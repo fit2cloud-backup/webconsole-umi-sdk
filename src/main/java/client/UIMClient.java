@@ -424,6 +424,10 @@ public class UIMClient {
     }
 
 //    public  ExecuteResponse<Boolean> existuser(String userName) {
+//        MultiThreadedHttpConnectionManager manager = new MultiThreadedHttpConnectionManager();
+//        manager.getParams().setDefaultMaxConnectionsPerHost(100);
+//        HttpClient client = new HttpClient(manager);
+//        client.getParams().setCookiePolicy(CookiePolicy.BROWSER_COMPATIBILITY);
 //        GetMethod method = new GetMethod(endPoint + "/admin/macula-uim/user/exist/" + userName);
 //        try {
 //            // 标识是OpenAPI请求
@@ -698,45 +702,49 @@ public class UIMClient {
 //        return null;
 //    }
 //
-//    public  PageResponse<UIMUser> userfind() {
-//        List<CommonCondition> conditions = new ArrayList<CommonCondition>();
-//        CommonCondition c = new CommonCondition();
-//        c.setName("userName");
-//        c.setDataType(DataType.String);
-//        c.setCriteriaType(CriteriaType.StartWith);
-//        c.setValue("User1");
-//        conditions.add(c);
-//        PostMethod method = new PostMethod(endPoint + "/admin/macula-uim/user/find");
-//        try {
-//            method.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
-//            // 标识是OpenAPI请求
-//            method.addRequestHeader(OpenApiUtils.AJAX_REQUEST_HEADER, OpenApiUtils.API_REQUEST_VALUE);
-//            // 添加POST BODY
-//            method.addParameter("page", "0");
-//            method.addParameter("rows", "20");
-//            method.addParameters(OpenApiUtils.getPostParams("conditions", conditions));
-//            // 设置请求参数
-//            method.setQueryString(OpenApiUtils.getOpenApiParams(appKey, appSecret, null, null, null, null,
-//                    "zh_CN", method.getParameters()));
-//
-//            int status = client.executeMethod(method);
-//            String content = method.getResponseBodyAsString();
-//
-//            if (status == HttpServletResponse.SC_OK || status == HttpServletResponse.SC_INTERNAL_SERVER_ERROR) {
-//                // 反序列化结果
-//                ObjectMapperImpl mapper = new ObjectMapperImpl();
-//                return mapper.readValue(content, new TypeReference<PageResponse<UIMUser>>() {
-//                });
-//            } else {
-//                throw new Exception("错误的请求");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            method.releaseConnection();
-//        }
-//        return null;
-//    }
+    public  PageResponse<UIMUser> userfind(String email,String value) {
+        List<CommonCondition> conditions = new ArrayList<CommonCondition>();
+        CommonCondition c = new CommonCondition();
+        c.setName(email);
+        c.setDataType(DataType.String);
+        c.setCriteriaType(CriteriaType.StartWith);
+        c.setValue(value);
+        conditions.add(c);
+        MultiThreadedHttpConnectionManager manager = new MultiThreadedHttpConnectionManager();
+        manager.getParams().setDefaultMaxConnectionsPerHost(100);
+        HttpClient client = new HttpClient(manager);
+        client.getParams().setCookiePolicy(CookiePolicy.BROWSER_COMPATIBILITY);
+        PostMethod method = new PostMethod(endPoint + "/admin/macula-uim/user/find");
+        try {
+            method.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+            // 标识是OpenAPI请求
+            method.addRequestHeader(OpenApiUtils.AJAX_REQUEST_HEADER, OpenApiUtils.API_REQUEST_VALUE);
+            // 添加POST BODY
+            method.addParameter("page", "0");
+            method.addParameter("rows", "20");
+            method.addParameters(OpenApiUtils.getPostParams("conditions", conditions));
+            // 设置请求参数
+            method.setQueryString(OpenApiUtils.getOpenApiParams(appKey, appSecret, null, null, null, null,
+                    "zh_CN", method.getParameters()));
+
+            int status = client.executeMethod(method);
+            String content = method.getResponseBodyAsString();
+
+            if (status == HttpServletResponse.SC_OK || status == HttpServletResponse.SC_INTERNAL_SERVER_ERROR) {
+                // 反序列化结果
+                ObjectMapperImpl mapper = new ObjectMapperImpl();
+                return mapper.readValue(content, new TypeReference<PageResponse<UIMUser>>() {
+                });
+            } else {
+                throw new Exception("错误的请求");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            method.releaseConnection();
+        }
+        return null;
+    }
 //
 //    public  ExecuteResponse<PasswordPolicy> pwdpolicy() {
 //        GetMethod method = new GetMethod(endPoint + "/admin/macula-uim/user/pwdpolicy");
