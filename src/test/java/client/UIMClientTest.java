@@ -42,7 +42,7 @@ public class UIMClientTest {
     }
     @Test
     public void orgfind(){
-        String name = "name";
+        String name = "oaId";
         String value = "9643";
         PageResponse<UIMOrg> rps = client.orgfind(name,value);
         List<UIMOrg> list = rps.getContent();
