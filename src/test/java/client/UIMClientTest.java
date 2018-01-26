@@ -14,23 +14,26 @@ import java.util.List;
  */
 public class UIMClientTest {
     private UIMClient client;
-    private String endPoint = "https://uim-dev.infinitus.com.cn";
-    private String appKey = "CMP";
-    private String appSecret = "xIkujdkA90PkujhIa976";
+    private String endPoint = "******";
+    private String appKey = "*****";
+    private String appSecret = "*******";
     @Before
     public void setUp() throws Exception {
         client = new UIMClient(endPoint,appKey,appSecret);
     }
     @Test
     public void readUsertest(){
-//        ExecuteResponse<UIMUser> rps = client.readuser("48252104");
-        ExecuteResponse<UIMUser> rps = client.readuser("2058");
+//        ExecuteResponse<UIMUser> rps = client.readuser("2058");
+//        ExecuteResponse<UIMUser> rps = client.readuser("0011156");
+        ExecuteResponse<UIMUser> rps = client.readuser("1570");
         UIMUser user = rps.getReturnObject();
         System.out.println(user);
     }
     @Test
     public void readorgTest(){
-        ExecuteResponse<UIMOrg> rps = client.readorg("IT0801");
+        ExecuteResponse<UIMOrg> rps = client.readorg("IT160506");
+//        ExecuteResponse<UIMOrg> rps = client.readorg("IT1605");
+//        ExecuteResponse<UIMOrg> rps = client.readorg("72815062");
         UIMOrg uimOrg = rps.getReturnObject();
         System.out.println(uimOrg);
     }
@@ -43,7 +46,8 @@ public class UIMClientTest {
     @Test
     public void orgfind(){
         String name = "oaId";
-        String value = "IT0801";
+//        String value = "IT0801";
+        String value = "72815062";
         PageResponse<UIMOrg> rps = client.orgfind(name,value);
         List<UIMOrg> list = rps.getContent();
         System.out.println(list);
