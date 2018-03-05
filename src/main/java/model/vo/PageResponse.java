@@ -3,6 +3,8 @@
  */
 package model.vo;
 
+import model.UIMOrg;
+
 import java.util.List;
 
 /**
