@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.fit2cloud</groupId>
-  <artifactId>webconsole-uim-sdk</artifactId>
+  <artifactId>phpipam-sdk</artifactId>
   <version>1.1</version>
 
 	<properties>
@@ -39,14 +39,27 @@
 <dependency>
     <groupId>org.apache.httpcomponents</groupId>
     <artifactId>httpclient</artifactId>
-    <version>4.5.2</version>
+    <version>4.2</version>
 </dependency>
+
+	  <dependency>
+		  <groupId>org.json</groupId>
+		  <artifactId>json</artifactId>
+		  <version>20160810</version>
+	  </dependency>
+
+	  <dependency>
+		  <groupId>com.alibaba</groupId>
+		  <artifactId>fastjson</artifactId>
+		  <version>1.1.15</version>
+	  </dependency>
 
 	<dependency>
 		<groupId>com.fasterxml.jackson.dataformat</groupId>
 		<artifactId>jackson-dataformat-xml</artifactId>
 		<version>2.6.6</version>
 	</dependency>
+
 
 	  <!--<dependency>-->
 		  <!--<groupId>com.fasterxml.jackson.core</groupId>-->
